@@ -19,7 +19,7 @@ A real-time chat app built for gamers — featuring game invites, live messaging
 
 ## Setup
 
-It's super easy to get started! There are no database servers or passwords to configure. The app automatically creates a local SQLite database for you.
+It's super easy to get started! There are no database servers or passwords to configure. The repository includes a pre-populated SQLite database so your chats and accounts are ready to go.
 
 1. **Clone the repository:**
    ```bash
@@ -61,7 +61,7 @@ gamer_chat/
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
-├── gamer_chat.db (Auto-generated SQLite DB)
+├── gamer_chat.db (Pre-populated SQLite DB)
 ├── seed_db.py (Optional test data script)
 └── requirements.txt
 ```
