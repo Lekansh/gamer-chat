@@ -360,17 +360,17 @@ function renderMessages() {
           const card = document.createElement("div");
           card.className = "game-card-msg";
           
-          const gameImages = {
-            tictactoe: "game_ttt.jpg",
-            rps: "game_rps.jpg",
-            memory: "game_memory.jpg"
+          const gameEmojis = {
+            tictactoe: "❌",
+            rps: "✊",
+            memory: "🃏"
           };
           const gameTitleStr = payload.game_id === "tictactoe" ? "Tic-Tac-Toe" : payload.game_id === "rps" ? "Rock Paper Scissors" : "Memory Match";
-          const imgSrc = gameImages[payload.game_id] || "";
+          const emoji = gameEmojis[payload.game_id] || "🎮";
           
           card.innerHTML = `
-            <img class="game-card-img" src="${imgSrc}" alt="${gameTitleStr}">
-            <div class="game-card-title">${gameTitleStr}</div>
+            <div class="game-card-emoji" style="font-size: 3rem; text-align: center; margin-bottom: 0.5rem;">${emoji}</div>
+            <div class="game-card-title" style="font-weight: 600; text-align: center;">${gameTitleStr}</div>
           `;
           
           if (!isSent && payload.status === "pending") {
@@ -489,11 +489,6 @@ function closeGamePicker() {
 }
 
 // Game Card click triggers
-challengeTtt.addEventListener("click", () => {
-  closeGamePicker();
-  sendGameMessage({ type: "challenge", game_id: "tictactoe", status: "pending" });
-});
-
 challengeTtt.addEventListener("click", () => {
   closeGamePicker();
   sendGameMessage({ type: "challenge", game_id: "tictactoe", status: "pending" });
