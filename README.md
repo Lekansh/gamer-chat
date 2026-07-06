@@ -6,7 +6,7 @@ A real-time chat app built for gamers — featuring game invites, live messaging
 
 - 🔐 Register / Login with gamer tags
 - 💬 Real-time messaging with polling
-- 🎮 In-chat game invites (Tic-Tac-Toe, Rock Paper Scissors, Memory Match)
+- 🎮 In-chat game sharing (Tic-Tac-Toe, Rock Paper Scissors, Memory Match)
 - 📎 Attachment-style game card sharing
 - 🔍 Search contacts
 - 🕐 Recent chats sorted by latest message timestamp
@@ -15,59 +15,53 @@ A real-time chat app built for gamers — featuring game invites, live messaging
 
 - **Frontend:** Vanilla HTML, CSS, JavaScript
 - **Backend:** Python FastAPI + Uvicorn
-- **Database:** MySQL via SQLAlchemy
+- **Database:** SQLite via SQLAlchemy
 
 ## Setup
 
-### Backend
+It's super easy to get started! There are no database servers or passwords to configure. The app automatically creates a local SQLite database for you.
 
-1. Navigate to the backend directory:
+1. **Clone the repository:**
    ```bash
-   cd backend
+   git clone https://github.com/Lekansh/gamer-chat.git
+   cd gamer-chat
    ```
-2. Install the dependencies:
+
+2. **Create a virtual environment (optional but recommended):**
    ```bash
-   pip install -r ../requirements.txt
+   python -m venv venv
+   .\venv\Scripts\activate
    ```
-3. Set up your MySQL credentials in a `.env` file inside the `backend` folder. You can create it using PowerShell:
-   ```powershell
-   Set-Content -Path "backend\.env" -Value "DATABASE_URL=mysql+pymysql://root:your_mysql_password@localhost:3306/gamer_chat" -Encoding utf8
-   ```
-   Or specify individual parameters:
-   ```env
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=your_mysql_password
-   DB_NAME=gamer_chat
-   ```
-4. Run the development server:
+
+3. **Install the dependencies:**
    ```bash
-   uvicorn main:app --reload --port 8000
+   pip install -r requirements.txt
    ```
 
-### Frontend
+4. **Start the application:**
+   ```bash
+   uvicorn backend.main:app --reload --port 8000
+   ```
 
-Open `frontend/index.html` directly in your browser, or serve it with any static server.
-
-> Make sure the backend is running on `http://localhost:8000` before opening the frontend.
+5. **Open the App:**
+   Open your browser and navigate to [http://localhost:8000](http://localhost:8000)
 
 ## Project Structure
 
 ```
 gamer_chat/
 ├── backend/
-│   ├── main.py
+│   ├── main.py (Entry point & serves frontend)
 │   ├── models.py
 │   ├── schemas.py
 │   ├── database.py
-│   ├── auth.py
+│   ├── config.py
 │   └── routers/
-│       ├── users.py
-│       └── messages.py
-└── frontend/
-    ├── index.html
-    ├── style.css
-    ├── app.js
-    └── game_*.jpg
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
+├── gamer_chat.db (Auto-generated SQLite DB)
+├── seed_db.py (Optional test data script)
+└── requirements.txt
 ```
