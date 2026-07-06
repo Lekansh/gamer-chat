@@ -373,19 +373,7 @@ function renderMessages() {
             <div class="game-card-title" style="font-weight: 600; text-align: center;">${gameTitleStr}</div>
           `;
           
-          if (!isSent && payload.status === "pending") {
-            const acceptBtn = document.createElement("button");
-            acceptBtn.className = "game-card-btn";
-            acceptBtn.innerText = "Play Now";
-            acceptBtn.onclick = () => acceptGameChallenge(payload.game_id, msg.id);
-            card.appendChild(acceptBtn);
-          } else if (payload.status === "accepted") {
-            const playBtn = document.createElement("button");
-            playBtn.className = "game-card-btn";
-            playBtn.innerText = "Open Board";
-            playBtn.onclick = () => openGameInterface(payload.game_id);
-            card.appendChild(playBtn);
-          }
+          // Removed play/accept buttons as per request so it just displays the card visually
           
           wrapper.appendChild(card);
         } else {
