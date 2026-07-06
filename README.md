@@ -21,11 +21,26 @@ A real-time chat app built for gamers — featuring game invites, live messaging
 
 ### Backend
 
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn backend.main:app --reload --port 8000
-```
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install the dependencies:
+   ```bash
+   pip install -r ../requirements.txt
+   ```
+3. Set up your MySQL credentials in a `.env` file inside the `backend` folder:
+   ```env
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_USER=root
+   DB_PASSWORD=your_mysql_password
+   DB_NAME=gamer_chat
+   ```
+4. Run the development server:
+   ```bash
+   uvicorn main:app --reload --port 8000
+   ```
 
 ### Frontend
 
