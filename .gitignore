@@ -21,8 +21,6 @@ env/
 *.env
 
 # Database
-*.db
-*.sqlite3
 mysql_dump.json
 
 # IDE
