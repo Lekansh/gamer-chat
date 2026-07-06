@@ -29,9 +29,9 @@ A real-time chat app built for gamers — featuring game invites, live messaging
    ```bash
    pip install -r ../requirements.txt
    ```
-3. Set up your MySQL credentials in a `.env` file inside the `backend` folder. You can use a single database connection string:
-   ```env
-   DATABASE_URL=mysql+pymysql://root:your_mysql_password@localhost:3306/gamer_chat
+3. Set up your MySQL credentials in a `.env` file inside the `backend` folder. You can create it using PowerShell:
+   ```powershell
+   Set-Content -Path "backend\.env" -Value "DATABASE_URL=mysql+pymysql://root:your_mysql_password@localhost:3306/gamer_chat" -Encoding utf8
    ```
    Or specify individual parameters:
    ```env
