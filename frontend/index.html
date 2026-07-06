@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamer Chat — Connect & Play</title>
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+  <!-- Glow background blobs -->
+  <div class="blob blob-purple"></div>
+  <div class="blob blob-pink"></div>
+
+  <!-- AUTH SECTION -->
+  <div id="auth-container">
+    <div class="auth-header">
+      <h1 class="auth-logo">GAMER CHAT</h1>
+      <p class="auth-subtitle" id="auth-subtitle-text">Connect with players & play mini-games</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form">
+      <div class="form-group">
+        <label for="login-username">Username</label>
+        <div class="input-wrapper">
+          <input type="text" id="login-username" placeholder="e.g. shadow_blade" required autocomplete="username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <div class="input-wrapper">
+          <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+      </div>
+      <button type="submit" class="btn-primary">Sign In</button>
+      <p class="auth-switch">Don't have an account? <a href="#" id="to-register">Register</a></p>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" style="display: none;">
+      <div class="form-group">
+        <label for="reg-name">Display Name</label>
+        <div class="input-wrapper">
+          <input type="text" id="reg-name" placeholder="e.g. Alex" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="reg-username">Username</label>
+        <div class="input-wrapper">
+          <input type="text" id="reg-username" placeholder="e.g. alex_warrior" required autocomplete="username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <div class="input-wrapper">
+          <input type="password" id="reg-password" placeholder="••••••••" required autocomplete="new-password">
+        </div>
+      </div>
+      <button type="submit" class="btn-primary">Create Account</button>
+      <p class="auth-switch">Already registered? <a href="#" id="to-login">Sign In</a></p>
+    </form>
+  </div>
+
+  <!-- APP CONTAINER -->
+  <div id="app-container">
+    
+    <!-- Sidebar Left -->
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div class="user-profile">
+          <div class="avatar" id="my-avatar">?</div>
+          <div class="user-info">
+            <div class="user-display-name" id="my-name">Loading...</div>
+            <div class="user-gamer-tag" id="my-gamer-id">gamer#0000</div>
+          </div>
+          <button class="btn-logout" id="logout-btn" title="Sign Out">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="contacts-section">
+        <h2 class="section-title">Active Chats</h2>
+        
+        <!-- Search Bar Wrapper -->
+        <div class="search-wrapper">
+          <svg class="search-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Search gamers..." autocomplete="off">
+          
+          <!-- Dropdown Results -->
+          <div class="search-results-overlay" id="search-results-overlay"></div>
+        </div>
+
+        <div class="contacts-list" id="contacts-list">
+          <!-- Dynamic contact items -->
+        </div>
+      </section>
+    </aside>
+
+    <!-- Main Chat Window / Right Section -->
+    <main class="chat-area">
+      <!-- Welcome Screen (Default) -->
+      <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-icon">🎮</div>
+        <h2 class="welcome-title">Welcome to Gamer Chat</h2>
+        <p class="welcome-desc">Select a player from the contact list to start a conversation. You can send messages, coordinate games, and play Tic-Tac-Toe, Rock Paper Scissors, or Memory Match right inside the chat!</p>
+      </div>
+
+      <!-- Live Chat Interface (Hidden by default) -->
+      <div id="chat-interface" class="chat-interface" style="display: none;">
+        <header class="chat-header">
+          <div class="chat-recipient-info">
+            <div class="avatar" id="active-avatar">?</div>
+            <div class="user-info">
+              <div class="user-display-name" id="active-name">Recipient</div>
+              <div class="user-gamer-tag" id="active-gamer-id">tag#0000</div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Message logs -->
+        <div class="messages-container" id="messages-container">
+          <!-- Dynamic message elements -->
+        </div>
+
+        <!-- Chat input bar -->
+        <div class="chat-input-bar" style="position: relative;">
+
+          <!-- Game Picker Popup (hidden by default) -->
+          <div class="game-picker" id="game-picker">
+            <div class="game-picker-title">Play a game</div>
+            <div class="game-pick-card" id="challenge-ttt">
+              <span class="game-pick-icon">❌</span>
+              <div class="game-pick-info">
+                <div class="game-pick-name">Tic-Tac-Toe</div>
+                <div class="game-pick-desc">Classic 3×3 battle</div>
+              </div>
+            </div>
+            <div class="game-pick-card" id="challenge-rps">
+              <span class="game-pick-icon">✊</span>
+              <div class="game-pick-info">
+                <div class="game-pick-name">Rock Paper Scissors</div>
+                <div class="game-pick-desc">One shot, one winner</div>
+              </div>
+            </div>
+            <div class="game-pick-card" id="challenge-memory">
+              <span class="game-pick-icon">🃏</span>
+              <div class="game-pick-info">
+                <div class="game-pick-name">Memory Match</div>
+                <div class="game-pick-desc">Flip & match the pairs</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Attach / Game button -->
+          <button class="btn-attach" id="attach-btn" title="Challenge to a game">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+            </svg>
+          </button>
+
+          <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
+          <button class="btn-send" id="send-btn">
+            Send
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- GAME MODAL WINDOW -->
+  <div class="game-modal" id="game-modal">
+    <div class="game-modal-content">
+      <button class="close-modal" id="close-game-btn">&times;</button>
+      <h3 class="game-title-header" id="game-title">Game Title</h3>
+      
+      <div class="game-status-text" id="game-status">Waiting for your turn...</div>
+
+      <!-- Dynamic game boards container -->
+      <div id="game-board-container">
+        <!-- Tic-Tac-Toe Grid -->
+        <div class="tictactoe-grid" id="tictactoe-board" style="display: none;">
+          <div class="tictactoe-cell" data-index="0"></div>
+          <div class="tictactoe-cell" data-index="1"></div>
+          <div class="tictactoe-cell" data-index="2"></div>
+          <div class="tictactoe-cell" data-index="3"></div>
+          <div class="tictactoe-cell" data-index="4"></div>
+          <div class="tictactoe-cell" data-index="5"></div>
+          <div class="tictactoe-cell" data-index="6"></div>
+          <div class="tictactoe-cell" data-index="7"></div>
+          <div class="tictactoe-cell" data-index="8"></div>
+        </div>
+
+        <!-- Rock Paper Scissors -->
+        <div class="rps-options" id="rps-board" style="display: none;">
+          <button class="rps-btn" data-choice="rock">✊</button>
+          <button class="rps-btn" data-choice="paper">✋</button>
+          <button class="rps-btn" data-choice="scissors">✌️</button>
+        </div>
+
+        <!-- Memory Match -->
+        <div class="memory-grid" id="memory-board" style="display: none;">
+          <!-- 16 cards dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=3"></script>
+</body>
+</html>
