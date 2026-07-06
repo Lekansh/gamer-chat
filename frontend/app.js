@@ -3,7 +3,7 @@
 const API_BASE = window.location.origin;
 
 // State Management
-let token = localStorage.getItem("token") || "";
+let token = sessionStorage.getItem("token") || "";
 let currentUser = null;
 let contacts = []; // only users chatted with
 let allUsers = []; // all system users for searching
@@ -125,7 +125,7 @@ loginForm.addEventListener("submit", async (e) => {
     if (!res.ok) throw new Error(data.detail || "Authentication failed");
     
     token = data.access_token;
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
     loginUser.value = "";
     loginPass.value = "";
     showToast("Successfully signed in!", "success");
@@ -164,7 +164,7 @@ registerForm.addEventListener("submit", async (e) => {
     const loginData = await loginRes.json();
     
     token = loginData.access_token;
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
     
     regName.value = "";
     regUser.value = "";
@@ -179,7 +179,7 @@ registerForm.addEventListener("submit", async (e) => {
 
 // Logout
 logoutBtn.addEventListener("click", () => {
-  localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
   token = "";
   currentUser = null;
   activeContact = null;
